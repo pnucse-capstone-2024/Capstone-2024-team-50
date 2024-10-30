@@ -73,6 +73,8 @@
 
 - Backend
 ```
+.../Backend/api/api/v1/connect_command.py 에서 serverIP를 실행하는 PC의 IP로 변경
+
 .../Backend$ python3 -m venv .venv
 .../Backend$ source .venv/bin/activate
 .../Backend$ cd api
