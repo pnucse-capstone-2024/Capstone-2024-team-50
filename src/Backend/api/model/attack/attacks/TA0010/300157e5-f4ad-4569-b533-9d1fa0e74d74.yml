@@ -1,0 +1,37 @@
+---
+
+- id: 300157e5-f4ad-4569-b533-9d1fa0e74d74
+  name: Compress staged directory
+  description: Compress staged directory는 공격자가 데이터를 압축하여 파일 크기를 줄이고 추후 유출을 용이하게 만듭니다. 압축 파일에 대한 접근 및 생성 로그 모니터링, 전송 암호화 적용 등을 통해 방어할 수 있습니다.
+  tactic: exfiltration
+  technique:
+    attack_id: T1560.001
+    name: "Archive Collected Data: Archive via Utility"
+  platforms:
+    darwin:
+      sh:
+        command: |
+          tar -P -zcf #{host.dir.staged}.tar.gz #{host.dir.staged} && echo #{host.dir.staged}.tar.gz
+        cleanup: |
+          rm #{host.dir.staged}.tar.gz
+        save_to:
+          - host_dir_compress
+    linux:
+      sh:
+        command: |
+          tar -P -zcf #{host.dir.staged}.tar.gz #{host.dir.staged} && echo #{host.dir.staged}.tar.gz
+        cleanup: |
+          rm #{host.dir.staged}.tar.gz
+        save_to:
+          - host_dir_compress
+    windows:
+      psh:
+        command: |
+          Compress-Archive -Path #{host.dir.staged} -DestinationPath #{host.dir.staged}.zip -Force;
+          sleep 1; ls #{host.dir.staged}.zip | foreach {$_.FullName} | select
+        cleanup: |
+          rm #{host.dir.staged}.zip
+        save_to:
+          - host_dir_compress
+  requirements:
+    - host.dir.staged

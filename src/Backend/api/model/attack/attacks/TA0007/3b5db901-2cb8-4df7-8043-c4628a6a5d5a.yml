@@ -1,0 +1,31 @@
+---
+
+- id: 3b5db901-2cb8-4df7-8043-c4628a6a5d5a
+  name: Find user processes
+  description: Find user processes는 현재 사용자로 실행 중인 프로세스를 탐색하여 정보를 수집하는 공격입니다. 프로세스 탐색에 대한 감사를 활성화하고, 민감한 프로세스 실행에 대한 접근 제어를 강화해서 이 공격을 방어할 수 있습니다.
+  tactic: discovery
+  technique:
+    attack_id: T1057
+    name: Process Discovery
+  platforms:
+    darwin:
+      sh:
+        command: |
+          ps aux | grep #{host.user.name}
+    linux:
+      sh:
+        command: |
+          ps aux | grep #{host.user.name}
+    windows:
+      psh:
+        command: |
+          $owners = @{};
+          gwmi win32_process |% {$owners[$_.handle] = $_.getowner().user};
+          $ps = get-process | select processname,Id,@{l="Owner";e={$owners[$_.id.tostring()]}};
+          foreach($p in $ps) {
+              if($p.Owner -eq "#{host.user.name}") {
+                  $p;
+              }
+          }
+  requirements:
+    - host.user.name

@@ -1,0 +1,7 @@
+---
+
+- name: Inject Process ID
+  description: 사용자 프로세스에 Cred dumper를 주입합니다.
+  attack_names:
+    - Find user processes
+    - Inject Cred dumper into process (Spookier)

@@ -1,0 +1,28 @@
+---
+
+- id: 90c2efaa-8205-480d-8bb6-61d90dbaf81b
+  name: Find files
+  description: Find files는 공격자가 민감한 파일을 탐색하여 추출할 수 있는 정보를 수집합니다. 파일 암호화, 접근 제어 정책 강화 등을 통해 방어할 수 있습니다.
+  tactic: collection
+  technique:
+    attack_id: T1005
+    name: Data from Local System
+  platforms:
+    darwin:
+      sh:
+        command: |
+          find /Users -name '*.pdf' -type f -not -path '*/\.*' -size -500k 2>/dev/null | head -5
+        save_to:
+          - host_file_path
+    windows:
+      psh:
+        command: |
+          Get-ChildItem C:\Users -Recurse -Include *.pdf -ErrorAction 'SilentlyContinue' | foreach {$_.FullName} | Select-Object -first 1;
+        save_to:
+          - host_file_path
+    linux:
+      sh:
+        command: |
+          find / -name '*.pdf' -type f -not -path '*/\.*' -size -500k 2>/dev/null | head -5
+        save_to:
+          - host_file_path

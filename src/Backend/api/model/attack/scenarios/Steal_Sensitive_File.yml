@@ -1,0 +1,10 @@
+---
+
+- name: Steal Sensitive File
+  description: 공격자가 피해자의 파일을 탈취하는 공격입니다.
+  attack_names:
+    - Create staging directory
+    - Find files
+    - Stage sensitive files
+    - Compress staged directory
+    - Exfil staged directory

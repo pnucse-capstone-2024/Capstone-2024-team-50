@@ -1,0 +1,35 @@
+---
+
+- id: c0da588f-79f0-4263-8998-7496b1a40596
+  name: Identify active user
+  description: Identify active user는 공격자가 시스템에서 활성 사용자 정보를 식별하여 추가적인 공격을 준비합니다. 최소 권한 원칙 적용, 시스템 및 사용자 로그 모니터링 강화 등으로 방어할 수 있습니다.
+  tactic: discovery
+  technique:
+    attack_id: T1033
+    name: System Owner/User Discovery
+  platforms:
+    darwin:
+      sh:
+        command: whoami
+        save_to:
+          - host_user_name
+          - domain_user_name
+
+    linux:
+      sh:
+        command: whoami
+        save_to:
+          - host_user_name
+          - domain_user_name
+    windows:
+      psh:
+        command: |
+          username
+        save_to:
+          - host_user_name
+          - domain_user_name
+      cmd:
+        command: echo %username%
+        save_to:
+          - host_user_name
+          - domain_user_name

@@ -1,0 +1,8 @@
+---
+
+- name: Remote Execution SMB
+  description: 공격자가 PsExec을 사용하여 SMB로 연결된 다른 대상 시스템으로의 Shell을 얻는 공격 시나리오입니다. 
+  attack_names:
+    - Install PSTool
+    - Discovery Remote Host
+    - Remote Execution SMB

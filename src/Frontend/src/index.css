@@ -1,0 +1,207 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+    font-family: 'Roboto-Regular';
+    font-weight: normal;
+    src: url('./fonts/Roboto-Regular.ttf') format('truetype');
+}
+
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+        'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
+        'Helvetica Neue', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+        monospace;
+}
+
+.icon {
+    width: 200px;
+    height: 50px;
+    fill: currentColor;
+    object-fit: cover;
+}
+.icon-lg {
+    width: 500px;
+    height: 125px;
+    fill: currentColor;
+    object-fit: cover;
+}
+
+.react-flow__node {
+    z-index: -1 !important;
+}
+
+.home-background {
+    margin: 0px auto;
+    padding: 70px 30px;
+    background: linear-gradient(
+        -45deg,
+        #23a6d5,
+        hsl(196, 72%, 71%),
+        #3eb489,
+        #19857b
+    );
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
+}
+
+.x-axis-label {
+    position: absolute; /* 축 레이블을 절대 위치로 설정 */
+    bottom: 20px; /* 축 레이블을 그래프 아래로 이동 */
+    font-size: 12px; /* 축 레이블 글꼴 크기 조절 */
+}
+
+/* iframe 에 고정된 높이를 부여합니다. */
+.fixed-height-iframe {
+    height: 1500px; /* 원하는 높이로 변경하세요 */
+  }
+  
+  /* Accordion이 iframe을 적절하게 감싸도록 합니다 */
+  .accordion-container {
+    overflow: auto; /* 필요하면 스크롤바를 추가합니다. */
+  }
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+section {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+section:nth-child(1) {
+    color: #e0ffff;
+}
+section:nth-child(2) {
+    color: #42455a;
+    background: #e0ffff;
+}
+section:nth-child(3) {
+    color: #e0ffff;
+}
+section:nth-child(4) {
+    color: #42455a;
+    background: #e0ffff;
+}
+section .container {
+    margin: 100px;
+}
+section h1 {
+    font-size: 3rem;
+    margin: 20px;
+}
+section h2 {
+    font-size: 40px;
+    text-align: center;
+    text-transform: uppercase;
+}
+section .text-container {
+    display: flex;
+}
+section .text-container .text-box {
+    margin: 20px;
+    padding: 20px;
+    background: #00c2cb;
+}
+section .text-container .text-box h3 {
+    font-size: 30px;
+    text-align: center;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+@media (max-width: 900px) {
+    section h1 {
+        font-size: 2rem;
+        text-align: center;
+    }
+    section .text-container {
+        flex-direction: column;
+    }
+}
+
+.reveal {
+    position: relative;
+    opacity: 0;
+}
+
+.reveal.active {
+    opacity: 1;
+}
+.active.fade-bottom {
+    animation: fade-bottom 1s ease-in;
+}
+.active.fade-left {
+    animation: fade-left 1s ease-in;
+}
+.active.fade-right {
+    animation: fade-right 1s ease-in;
+}
+@keyframes fade-bottom {
+    0% {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+@keyframes fade-left {
+    0% {
+        transform: translateX(-100px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fade-right {
+    0% {
+        transform: translateX(100px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+#add-asset-dialog-title {
+    cursor: move;
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+}
+
+#add-asset-dialog-description {
+    font-size: 16px;
+    color: #0d65a2;
+    font-weight: bold;
+}
+
+#add-asset-dialog-sub-description {
+    font-size: 16px;
+    color: #000000;
+    font-weight: bold;
+}

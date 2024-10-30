@@ -1,0 +1,47 @@
+---
+
+- id: 5a39d7ed-45c9-4a79-b581-e5fb99e24f65
+  name: System processes
+  description: System processes는 시스템에서 실행 중인 모든 프로세스를 탐색하여 정보를 수집하는 공격입니다. 프로세스 실행에 대한 접근을 제한하고, 관리자가 아닌 사용자에게 시스템 프로세스 정보를 숨기도록 설정합니다.
+  tactic: discovery
+  technique:
+    attack_id: T1057
+    name: Process Discovery
+  platforms:
+    windows:
+      psh:
+        command: Get-Process
+      cmd:
+        command: tasklist
+      donut_amd64:
+        build_target: ProcessDump.donut
+        language: csharp
+        code: |
+          using System;
+          using System.Diagnostics;
+          using System.ComponentModel;
+
+          namespace ProcessDump
+          {
+              class MyProcess
+              {
+                  void GrabAllProcesses()
+                  {
+                      Process[] allProc = Process.GetProcesses();
+                      foreach(Process proc in allProc){
+                          Console.WriteLine("Process: {0} -> PID: {1}", proc.ProcessName, proc.Id);
+                      }
+                  }
+                  static void Main(string[] args)
+                  {
+                      MyProcess myProc = new MyProcess();
+                      myProc.GrabAllProcesses();
+                  }
+              }
+          }
+    darwin:
+      sh:
+        command: ps aux
+    linux:
+      sh:
+        command: ps aux
