@@ -1,0 +1,32 @@
+- id: 2fe2d5e6-7b06-4fc0-bf71-6966a1226731
+  name: Disrupt WIFI
+  description: Disrupt WIFI는 공격자가 Wi-Fi 연결을 끊어 네트워크 서비스에 방해를 가하는 도스(DoS) 공격입니다. 무선 네트워크 보안 강화, 방해 신호 탐지 시스템 도입 등으로 방어할 수 있습니다.
+  tactic: impact
+  technique:
+    attack_id: T1499
+    name: Endpoint Denial of Service
+  platforms:
+    darwin:
+      sh:
+        command: |
+          ./wifi.sh off
+        cleanup: |
+          ./wifi.sh on
+        payloads:
+        - wifi.sh
+    linux:
+      sh:
+        command: |
+          ./wifi.sh off
+        cleanup: |
+          ./wifi.sh on
+        payloads:
+        - wifi.sh
+    windows:
+      psh:
+        command: |
+          .\wifi.ps1 -Off
+        cleanup: |
+          .\wifi.ps1 -On
+        payloads:
+        - wifi.ps1

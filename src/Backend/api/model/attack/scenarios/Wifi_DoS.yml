@@ -1,0 +1,8 @@
+---
+
+- name: WIFI DOS
+  description: 공격자가 피해자의 WIFI 모듈을 공격하여 WIFI를 사용할 수 없게 만드는 공격입니다.
+  attack_names:
+    - Preferred WIFI
+    - Bypass UAC By fodhelper.exe
+    - Disrupt WIFI

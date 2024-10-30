@@ -1,0 +1,21 @@
+---
+
+- id: 43b3754c-def4-4699-a673-1d85648fda6a
+  name: Avoid logs
+  description: Avoid logs는 터미널에서 명령 기록을 삭제하고 기록되지 않도록 설정하여 로그를 회피하는 공격입니다. 시스템에서 Bash 및 PowerShell 로그를 비활성화하지 못하도록 로그 설정을 강제하고, 로그 모니터링을 강화합니다.
+  tactic: defense-evasion
+  technique:
+    attack_id: T1070.003
+    name: "Indicator Removal on Host: Clear Command History"
+  platforms:
+    darwin:
+      sh:
+        command: |
+          > $HOME/.bash_history && unset HISTFILE
+    linux:
+      sh:
+        command: |
+          > $HOME/.bash_history && unset HISTFILE
+    windows:
+      psh:
+        command: Clear-History;Clear
